@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>popup san francisco</title>
+  </head>
+  <body>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+      @import url("https://fonts.googleapis.com/css2?family=Allison&display=swap");
+      body {
+        margin: 0;
+      }
+
+      h1 {
+        font-family: "Lato", sans-serif;
+        font-weight: 300;
+        letter-spacing: 2px;
+        font-size: 48px;
+      }
+      h2 {
+        font-family: "Allison", cursive;
+        font-weight: 400;
+        letter-spacing: 2px;
+        font-size: 68px;
+      }
+      p {
+        font-family: "Lato", sans-serif;
+        letter-spacing: 1px;
+        font-size: 14px;
+        color: #333333;
+      }
+
+      .header {
+        position: relative;
+        text-align: center;
+        background: linear-gradient(
+          60deg,
+          rgba(84, 58, 183, 1) 0%,
+          rgba(0, 172, 193, 1) 100%
+        );
+        color: white;
+      }
+      .logo {
+        width: 50px;
+        fill: white;
+        padding-right: 15px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .inner-header {
+        height: 65vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .flex {
+        /*Flexbox for containers*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 15vh;
+        margin-bottom: -7px; /*Fix for safari gap*/
+        min-height: 100px;
+        max-height: 150px;
+      }
+
+      .content {
+        position: relative;
+        height: 20vh;
+        text-align: center;
+        background-color: white;
+      }
+
+      /* Animation */
+
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+      /*Shrinking for mobile*/
+      @media (max-width: 768px) {
+        .waves {
+          height: 40px;
+          min-height: 40px;
+        }
+        .content {
+          height: 30vh;
+        }
+        h1 {
+          font-size: 34px;
+        }
+        h2 {
+          font-family: "Allison", cursive;
+          font-weight: 400;
+          letter-spacing: 1px;
+          font-size: 42px;
+        }
+      }
+
+      /* CSS Form  */
+      input,
+      button {
+        /* position: absolute;
+        top: 100%;
+        left: 50%; */
+        /* transform: translate(50%, -3%); */
+        display: block;
+        width: 70vw;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s cubic-bezier(0.4, 0.25, 0.8, 0.3);
+      }
+      input {
+        padding: 0.25rem 0;
+        border: 0;
+        border-bottom: 1px solid #e7e7e7;
+        outline: 0;
+        background: transparent;
+        color: #fff;
+        font-size: 3rem;
+        line-height: 4rem;
+        letter-spacing: 0.125rem;
+        transition: all 0.5s cubic-bezier(0.4, 0.25, 0.8, 0.3);
+      }
+      input::selection {
+        background: rgba(187, 21, 21, 0.25);
+      }
+      button,
+      .signup-button {
+        border-radius: 2rem;
+        padding: 0.25em 0;
+        border: 0;
+        outline: 0;
+        background: #2591e9;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 2rem;
+        line-height: 3.6rem;
+        letter-spacing: 0.0625rem;
+        box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.25);
+        text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.25),
+          0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      input:focus,
+      button:focus {
+        opacity: 1;
+        transform: translate(30%, 1%);
+        pointer-events: auto;
+        transition: all 0.4s cubic-bezier(0.1, 0.45, 0.1, 0.85) 0.5s;
+        z-index: 10;
+      }
+      input:focus ~ input,
+      input:focus ~ button {
+        transform: translate(30%, 1%);
+        transition: all 0.5s ease-in;
+      }
+      input:focus ~ label .label-text {
+        transform: translate(30%, 1%);
+        transition: all 0.5s ease-in;
+      }
+      input:focus ~ .tip {
+        opacity: 1;
+      }
+      input:focus ~ .signup-button,
+      button:focus ~ .signup-button {
+        opacity: 0;
+      }
+      input:focus + label .label-text {
+        opacity: 1;
+        transform: translate(-50%, -90%);
+        transition: all 0.3s cubic-bezier(0.1, 0.45, 0.1, 0.85) 0.4s;
+      }
+
+      .signup-button,
+      .signup-button-trigger {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        width: 50vw;
+        padding: 0.25rem 0;
+        line-height: 3.6rem;
+        text-align: center;
+        pointer-events: none;
+        cursor: pointer;
+        transition: opacity 0.4s 0.3s;
+      }
+      .signup-button-trigger {
+        opacity: 0;
+        pointer-events: auto;
+      }
+      .label-text {
+        position: fixed;
+        top: calc(60% - 4rem);
+        left: 50%;
+        transform: translate(-50%, -300%);
+        width: 70vw;
+        padding: 3.125rem 0 1.5rem;
+        text-transform: uppercase;
+        color: #fff;
+        opacity: 0;
+        font-size: 1.125rem;
+        font-weight: 300;
+        letter-spacing: 0.125rem;
+        pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.4, 0.25, 0.8, 0.3) 0.05s;
+      }
+
+      html,
+      body {
+        font-family: "Lato", sans-serif;
+      }
+      form {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .form-div {
+        position: fixed;
+        top: 53%;
+        left: 15%;
+        height: 50px;
+        max-width: auto;
+        margin-top: 3em;
+      }
+    </style>
+    <!--Hey! This is the original version
+of Simple CSS Waves-->
+
+    <div class="header">
+      <!--Content before waves-->
+      <div class="inner-header flex">
+        <div class="row">
+          <svg
+            version="1.1"
+            class="logo"
+            baseProfile="tiny"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 500 500"
+            xml:space="preserve"
+          >
+            <path
+              fill="#FFFFFF"
+              stroke="#000000"
+              stroke-width="10"
+              stroke-miterlimit="10"
+              d="M57,283"
+            />
+            <g>
+              <path
+                fill="#fff"
+                d="M 0.00,219.33 C 0.00,219.33 14.16,247.04 14.16,247.04 27.21,240.37 38.76,231.72 48.57,221.59 48.57,221.59 48.57,163.19 48.57,163.19 40.50,187.13 23.38,207.38 0.00,219.33 Z M 48.57,323.42 C 48.57,323.42 48.57,354.53 48.57,354.53 48.57,354.53 7.08,354.53 7.08,354.53 7.08,354.53 7.08,323.42 7.08,323.42 7.08,323.42 48.57,323.42 48.57,323.42 Z M 359.72,215.12 C 359.72,215.12 359.72,154.38 359.72,154.38 345.64,198.24 304.47,230.07 256.00,230.07 207.53,230.07 166.36,198.24 152.28,154.38 152.28,154.38 152.28,215.12 152.28,215.12 159.97,223.60 168.68,231.14 178.21,237.53 178.21,237.53 178.21,323.42 178.21,323.42 178.21,323.42 152.28,323.42 152.28,323.42 152.28,323.42 152.28,354.53 152.28,354.53 152.28,354.53 359.72,354.53 359.72,354.53 359.72,354.53 359.72,323.42 359.72,323.42 359.72,323.42 333.79,323.42 333.79,323.42 333.79,323.42 333.79,237.53 333.79,237.53 343.32,231.14 352.03,223.60 359.72,215.12 Z M 240.44,323.42 C 240.44,323.42 209.33,323.42 209.33,323.42 209.33,323.42 209.33,253.18 209.33,253.18 219.24,256.69 229.66,259.12 240.44,260.32 240.44,260.32 240.44,323.42 240.44,323.42 Z M 302.67,323.42 C 302.67,323.42 271.56,323.42 271.56,323.42 271.56,323.42 271.56,260.32 271.56,260.32 282.35,259.12 292.76,256.69 302.67,253.18 302.67,253.18 302.67,323.42 302.67,323.42 Z M 504.92,323.42 C 504.92,323.42 504.92,354.53 504.92,354.53 504.92,354.53 463.44,354.53 463.44,354.53 463.44,354.53 463.44,323.42 463.44,323.42 463.44,323.42 504.92,323.42 504.92,323.42 Z M 463.43,163.20 C 463.43,163.20 463.43,221.59 463.43,221.59 473.24,231.72 484.79,240.37 497.84,247.04 497.84,247.04 512.00,219.33 512.00,219.33 488.63,207.39 471.51,187.14 463.43,163.20 Z M 432.32,58.94 C 432.32,58.94 432.32,453.06 432.32,453.06 432.32,453.06 390.83,453.06 390.83,453.06 390.83,453.06 390.83,58.94 390.83,58.94 390.83,58.94 432.32,58.94 432.32,58.94 Z M 121.17,58.94 C 121.17,58.94 121.17,453.06 121.17,453.06 121.17,453.06 79.69,453.06 79.69,453.06 79.69,453.06 79.69,58.94 79.69,58.94 79.69,58.94 121.17,58.94 121.17,58.94 Z"
+              />
+            </g>
+          </svg>
+
+          <h1>popup san francisco</h1>
+          <h2>Members Only</h2>
+        </div>
+      </div>
+      <div class="form-div">
+        <form>
+          <input
+            id="input-1"
+            type="text"
+            placeholder="John Doe"
+            required
+            autofocus
+          />
+          <label for="input-1">
+            <span class="label-text">Full Name</span>
+
+            <div class="signup-button-trigger">Sign Up</div>
+          </label>
+          <input id="input-2" type="text" placeholder="john" required />
+          <label for="input-2">
+            <span class="label-text">Username</span>
+          </label>
+          <input
+            id="input-3"
+            type="email"
+            placeholder="email@address.com"
+            required
+          />
+          <label for="input-3">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            id="input-4"
+            type="text"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+            required
+          />
+          <label for="input-4">
+            <span class="label-text">Password</span>
+          </label>
+          <input
+            id="input-5"
+            type="text"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+            required
+          />
+          <label for="input-5">
+            <span class="label-text">Confirm Password</span>
+          </label>
+          <button type="submit">Create Your Account</button>
+          <div class="signup-button">Sign Up</div>
+        </form>
+      </div>
+
+      <!--Waves Container-->
+      <div>
+        <svg
+          class="waves"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+          shape-rendering="auto"
+        >
+          <defs>
+            <path
+              id="gentle-wave"
+              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+            />
+          </defs>
+          <g class="parallax">
+            <use
+              xlink:href="#gentle-wave"
+              x="48"
+              y="0"
+              fill="rgba(255,255,255,0.7"
+            />
+            <use
+              xlink:href="#gentle-wave"
+              x="48"
+              y="3"
+              fill="rgba(255,255,255,0.5)"
+            />
+            <use
+              xlink:href="#gentle-wave"
+              x="48"
+              y="5"
+              fill="rgba(255,255,255,0.3)"
+            />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+          </g>
+        </svg>
+      </div>
+      <!--Waves end-->
+    </div>
+    <!--Header ends-->
+
+    <!--Content starts-->
+    <div class="content flex">
+      <p>POPUP SAN FRANCISCO | 2021 | Members only ;)</p>
+    </div>
+    <!--Content ends-->
+  </body>
+</html>
